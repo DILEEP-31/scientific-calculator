@@ -1,0 +1,33 @@
+{
+  "name": "scientific-calculator",
+  "version": "1.0.0",
+  "description": "A feature-rich scientific calculator web application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server . -p 8000 -c-1",
+    "test": "vitest --run",
+    "test:pbt": "vitest --run src/__tests__/properties.test.js",
+    "lint": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "validate": "npm run lint && npm run test"
+  },
+  "keywords": [
+    "calculator",
+    "scientific",
+    "math",
+    "web-app"
+  ],
+  "author": "You",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.0.3",
+    "vitest": "^1.0.0",
+    "fast-check": "^3.13.0"
+  },
+  "dependencies": {
+    "decimal.js": "^10.4.3",
+    "mathjs": "^11.11.0"
+  }
+}

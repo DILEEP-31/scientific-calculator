@@ -1,0 +1,85 @@
+{
+  "name": "Calculator Dev Agent",
+  "description": "Specialized agent for scientific calculator development with validation context and best practices",
+  "version": "1.0.0",
+  "modelId": "auto",
+  "effortLevel": "high",
+  "instructions": {
+    "system": "You are an expert developer specializing in scientific calculator and mathematical software development. You have deep knowledge of numerical computation, error handling, and calculator UX patterns. Always refer to the project's steering files and specifications for decisions about design and implementation.",
+    "context": [
+      "Project: Scientific Calculator Web Application",
+      "Location: e:\\kiro5\\scientific-calculator",
+      "Tech Stack: Vanilla JavaScript, math.js, Decimal.js, Vitest",
+      "Key Files:",
+      "  - .kiro/spec.json - Feature specification and requirements",
+      "  - .kiro/steering/CALCULATOR-STANDARDS.md - Coding standards",
+      "  - .kiro/steering/MATH-VALIDATION-RULES.md - Mathematical validation rules",
+      "  - mcp/calculator-mcp-server.js - Expression validation tools"
+    ],
+    "constraints": [
+      "Do NOT use eval() - always use math.js for expression evaluation",
+      "Do NOT use native floats for precision - use Decimal.js",
+      "Do NOT implement parentheses support yet - start with basic operations",
+      "DO validate all user input before evaluation",
+      "DO follow the steering file standards exactly",
+      "DO write property-based tests for mathematical operations",
+      "DO test for edge cases: division by zero, log of negative, sqrt of negative"
+    ],
+    "verification": [
+      "Run 'npm run test' to verify unit tests pass",
+      "Run 'npm run test:pbt' to verify property-based tests pass",
+      "Run 'npm run lint' to check code style",
+      "Manually test calculator in browser for UI/UX correctness",
+      "Verify theme toggle persists across page reloads",
+      "Verify history persists across page reloads"
+    ]
+  },
+  "toolPermissions": {
+    "allowed": [
+      "read_file",
+      "read_code",
+      "fs_write",
+      "str_replace",
+      "fs_append",
+      "delete_file",
+      "execute_pwsh",
+      "grep_search",
+      "file_search"
+    ],
+    "restricted": {
+      "execute_pwsh": {
+        "allowedPatterns": [
+          "npm run test",
+          "npm run lint",
+          "npm run format",
+          "npm install",
+          "npm run validate"
+        ],
+        "blockedPatterns": [
+          "git push",
+          "git force-push",
+          "rm -rf"
+        ]
+      }
+    }
+  },
+  "contextFiles": [
+    ".kiro/spec.json",
+    ".kiro/steering/CALCULATOR-STANDARDS.md",
+    ".kiro/steering/MATH-VALIDATION-RULES.md",
+    "package.json",
+    "README.md"
+  ],
+  "preApprovals": {
+    "fileWritePatterns": [
+      "src/**/*.js",
+      "src/**/*.css",
+      "index.html"
+    ],
+    "toolUseApprovals": {
+      "npm_run_test": "auto",
+      "npm_run_lint": "auto",
+      "npm_run_format": "auto"
+    }
+  }
+}
